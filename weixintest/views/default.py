@@ -17,7 +17,7 @@ except ImportError:
     import json as json
 
 from ..core import application, request_logger, misc, exceptions, error_response
-from weixintest.core import middleware as mid
+#from weixintest.core import middleware as mid
 
 _logger = logging.getLogger(__name__)
 

@@ -31,8 +31,8 @@ from weixintest.views.middleware import MonitorMiddleware
 
 # Main application
 application = flask.Flask(__name__)
-sentry = Sentry(dsn = config.sentry_dsn)
-middleware = MonitorMiddleware(application, 'weixintest', sentry)
+#sentry = Sentry(dsn = config.sentry_dsn)
+#middleware = MonitorMiddleware(application, 'weixintest', sentry)
 
 
 _DEFAULT_RESPONSE_HEADERS = {
