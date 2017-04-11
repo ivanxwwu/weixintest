@@ -1,0 +1,8 @@
+MarkupSafe
+Werkzeug
+Jinja2
+Flask
+PyYAML
+prometheus_client
+raven
+blinker

@@ -1,0 +1,8 @@
+location  /weixintest {
+    include uwsgi_params;
+    uwsgi_pass unix:/data/apps/run/uwsgi_weixintest.sock;
+
+    access_log /data/logs/weixintest/access.log brackets;
+    error_log /data/logs/weixintest/error.log  warn;
+}
+
