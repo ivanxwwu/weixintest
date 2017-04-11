@@ -17,8 +17,8 @@ app_config_path = os.path.join(_parent, 'config.json')
 
 # register APIs after `C.load_config()`
 from weixintest.views import default
-from weixintest.apis import version
-application.register_blueprint(version.app, url_prefix='/weixintest/version')
+from weixintest.apis import weixintest
+application.register_blueprint(weixintest.app, url_prefix='/weixintest')
 
 if __name__ != '__main__':
     with open(logging_config_path, 'r') as f:

@@ -10,7 +10,7 @@
 ##
 # set service code to differ from errors from other services
 ##
-_SERVICE_CODE = 0
+_SERVICE_CODE = 1230
 
 assert _SERVICE_CODE != 0, "Change `_SERVICE_CODE` to make errors different from other services."
 
