@@ -8,11 +8,14 @@
 
 import flask
 
-from ..core import success_response
+from ..core import success_response, normal_success_response
 
 app = flask.Blueprint('weixintest', __name__)
 
 
 @app.route('/', strict_slashes=False, methods=['GET', 'POST'])
 def index():
-    return success_response("1")
+    args = flask.request.args
+    echostr = args.get('echostr', '')
+    print echostr
+    return normal_success_response(echostr)

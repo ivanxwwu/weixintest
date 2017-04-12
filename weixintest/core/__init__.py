@@ -48,6 +48,10 @@ def _update_response_headers(resp, headers):
     for k, v in headers.iteritems():
         resp.headers[k] = v
 
+def normal_success_response(content):
+    resp = application.response_class(content)
+    _update_response_headers(resp, _DEFAULT_RESPONSE_HEADERS)
+    return resp, constants.HTTP_STATUS_LINE_OK
 
 def success_response(content):
     resp = application.response_class(json.dumps(content), mimetype=_MIMETYPE_JSON)
