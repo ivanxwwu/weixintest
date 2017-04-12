@@ -32,4 +32,11 @@ class APIException(BaseServiceException):
     pass
 
 
+class CheckException(BaseServiceException):
+    def __init__(self, error=None, extra=None):
+        retry_interval = 0
+        error_code = errorcode.CHECK_ERROR
+        super(CheckException, self).__init__(error_code, error, retry_interval, extra)
+
 SERVER_ERROR_EXCEPTION = APIException(errorcode.SERVER_ERROR, "server error")
+ChECK_ERROR_EXCEPTION = APIException(errorcode.CHECK_ERROR, "check error")

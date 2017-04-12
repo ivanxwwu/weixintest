@@ -25,3 +25,4 @@ OK = 0
 
 # base error,
 SERVER_ERROR = _make_error_code(0)
+CHECK_ERROR = _make_error_code(2000)

@@ -16,7 +16,7 @@ try:
 except ImportError:
     import json as json
 
-from ..core import application, request_logger, misc, exceptions, error_response
+from ..core import application, request_logger, misc, exceptions, error_response, success_response
 #from weixintest.core import middleware as mid
 
 _logger = logging.getLogger(__name__)
@@ -46,13 +46,13 @@ application.error_handler_spec[None][500] = _handler_default_exception
 @application.errorhandler(Exception)
 def _handle_service_exception(ex):
     if isinstance(ex, exceptions.BaseServiceException):
-        # TODO: add your custom logic
-        pass
+        result = dict(result="error", **ex.dictify())
+        return success_response(result)
     else:
-        _logger.error("Exception <%s>, Traceback: %r", str(ex), traceback.format_exc())
+        _logger.error("Exception <%s>, Traceback: %s", str(ex), traceback.format_exc())
         ex = exceptions.APIException(exceptions.errorcode.SERVER_ERROR, "server error", extra={'reason': str(ex)})
         mid.on_internal_error()
-    return error_response(ex.extra)
+    return error_response(ex)
 
 
 @application.teardown_request
