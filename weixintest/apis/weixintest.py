@@ -22,16 +22,16 @@ app = flask.Blueprint('weixintest', __name__)
 
 
 @app.route('/', strict_slashes=False, methods=['GET', 'POST'])
-#@check_weixin_sig
+@check_weixin_sig
 def index():
     #echostr = flask.request.args.get('echostr', '')
     tree = ET.fromstring(flask.request.data)
-    tousername = tree.find('ToUserName').text
-    fromusername = tree.find('FromUserName').text
-    create_time = tree.find('CreateTime').text
-    content = tree.find('Content').text
-    msgid = tree.find('MsgId').text
-    msgtype = tree.find('MsgType').text
+    tousername = tree.find('ToUserName')
+    fromusername = tree.find('FromUserName')
+    create_time = tree.find('CreateTime')
+    content = tree.find('Content')
+    msgid = tree.find('MsgId')
+    msgtype = tree.find('MsgType')
     fromusername.text, tousername.text = tousername.text, fromusername.text
     create_time.text = str(int(time.time()))
     return normal_success_response(ET.tostring(tree))
