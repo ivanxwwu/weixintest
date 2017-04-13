@@ -1,0 +1,9 @@
+<xml>
+    <URL><![CDATA[http://weixin.xivan.cn/weixintest]]></URL>
+    <ToUserName><![CDATA[ivan]]></ToUserName>
+    <FromUserName><![CDATA[ivan123]]></FromUserName>
+    <CreateTime>123123213232</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[1232]]></Content>
+    <MsgId>3333</MsgId>
+</xml>

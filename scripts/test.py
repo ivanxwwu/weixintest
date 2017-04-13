@@ -1,14 +1,35 @@
 #-*- coding:utf8 -*-
+
 try:
     import xml.etree.cElementTree as ET
 except ImportError:
     import xml.etree.ElementTree as ET
 import sys
 
+country_string = '''
+  <data>
+    <country name="Singapore">
+      <rank>4</rank>
+      <year>2011</year>
+      <gdppc>59900</gdppc>
+      <neighbor name="Malaysia" direction="N"/>
+    </country>
+    <country name="Panama">
+      <rank>68</rank>
+      <year>2011</year>
+      <gdppc>13600</gdppc>
+      <neighbor name="Costa Rica" direction="W"/>
+      <neighbor name="Colombia" direction="E"/>
+    </country>
+  </data>
+'''
+
 try:
-    tree = ET.parse("country.xml")     #打开xml文档
-    #root = ET.fromstring(country_string) #从字符串传递xml
-    root = tree.getroot()         #获得root节点
+    #tree = ET.parse("country.xml")     #打开xml文档
+    tree = ET.fromstring(country_string) #从字符串传递xml
+
+    print tree
+    root = tree.find('data')         #获得root节点
 except Exception, e:
     print "Error:cannot parse file:country.xml."
     sys.exit(1)

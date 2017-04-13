@@ -24,8 +24,9 @@ app = flask.Blueprint('weixintest', __name__)
 #@check_weixin_sig
 def index():
     echostr = flask.request.args.get('echostr', '')
-    tree = ET.parse(flask.request.data)
-    root = tree.getroot()
-    tousername = root.find('ToUserName')
+    print flask.request.args
+    print flask.request.data
+    tree = ET.fromstring(flask.request.data)
+    tousername = tree.find('ToUserName').text
     print tousername
     return normal_success_response("1")
