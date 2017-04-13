@@ -29,11 +29,19 @@ app = flask.Blueprint('weixintest', __name__)
 def index():
     #echostr = flask.request.args.get('echostr', '')
     msg = receivce.parse_xml(flask.request.data)
-    if isinstance(msg, receivce.Msg) and msg.MsgType == 'text':
+    if isinstance(msg, receivce.Msg):
         touser = msg.FromUserName
         fromuser = msg.ToUserName
-        content = 'test'
-        replymsg = reply.TextMsg(touser, fromuser, content)
-        return normal_success_response(replymsg.send())
+        print msg.MsgType
+        if msg.MsgType == 'text':
+            content = 'test'
+            replymsg = reply.TextMsg(touser, fromuser, content)
+            return normal_success_response(replymsg.send())
+        if msg.MsgType == 'image':
+            mediaId = msg.MediaId
+            replymsg = reply.ImageMsg(touser, fromuser, mediaId)
+            return replymsg.send()
+        else:
+            return reply.Msg().send()
     else:
         return normal_success_response("success")
