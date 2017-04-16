@@ -2,7 +2,7 @@
 from functools import wraps
 import hashlib
 from flask import abort, g, request
-from ..core import exceptions, config
+from ..core import exceptions, config, constants
 
 def check_weixin_sig(f):
     @wraps(f)
@@ -13,7 +13,7 @@ def check_weixin_sig(f):
         nonce = tmp.get('nonce', None)
         if not signature or not timestamp or not nonce:
             raise exceptions.CheckException, "check weixin sig error"
-        l = [config.token, timestamp, nonce]
+        l = [constants.token, timestamp, nonce]
         l.sort()
         sha1 = hashlib.sha1()
         map(sha1.update, l)

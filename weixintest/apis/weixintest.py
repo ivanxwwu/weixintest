@@ -39,6 +39,7 @@ def index():
             return normal_success_response(replymsg.send())
         if msg.MsgType == 'image':
             mediaId = msg.MediaId
+            mediaId = 'C6kNYAZl-249gVTtTrQ1RdhqC0tr0FIcOp5AN7Q4L78juTa9pO3zm-GvH6Ned8mj'
             replymsg = reply.ImageMsg(touser, fromuser, mediaId)
             return replymsg.send()
         else:
