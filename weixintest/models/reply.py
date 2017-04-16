@@ -1,4 +1,5 @@
 import time
+import tuling
 
 class Msg(object):
     def __init__(self):
@@ -12,7 +13,8 @@ class TextMsg(Msg):
         self.__dict['ToUserName'] = toUserName
         self.__dict['FromUserName'] = fromUserName
         self.__dict['CreateTime'] = int(time.time())
-        self.__dict['Content'] = content
+        idiom = tuling.IdiomsSolitaire(content, fromUserName)
+        self.__dict['Content'] = idiom.get_info()
 
     def send(self):
         XmlForm = """

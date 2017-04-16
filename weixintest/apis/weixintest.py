@@ -34,8 +34,8 @@ def index():
     if isinstance(msg, receivce.Msg):
         print msg.MsgType
         if msg.MsgType == 'text':
-            content = 'test'
-            replymsg = reply.TextMsg(touser, fromuser, content)
+            text = msg.Content
+            replymsg = reply.TextMsg(touser, fromuser, text)
             return normal_success_response(replymsg.send())
         if msg.MsgType == 'image':
             mediaId = msg.MediaId

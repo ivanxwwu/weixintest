@@ -1,5 +1,6 @@
+#-*- coding:utf8 -*-
 import urllib
-from ..models import redis_model
+from weixintest.models import redis_model
 
 class Menu(object):
     def __init__(self):
