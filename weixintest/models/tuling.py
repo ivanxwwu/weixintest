@@ -20,14 +20,13 @@ class IdiomsSolitaire(Tuling):
     def get_info(self):
         post_data = dict(
             info = '成语接龙' + self.info,
-            userid = self.userid,
+            userid = self.userid[3:],
             key = constants.tuling_key
         )
         postHeaders = {
             'Content-Type':'application/json'
         }
         res = requests.post(self.api_url, json = post_data, headers = postHeaders)
-        print res.text
         text = str(res.json().get('text').encode('utf8'))
         if text.startswith('进入成语接龙模式'):
             text = text[len('进入成语接龙模式'):]
@@ -42,6 +41,6 @@ class IdiomsSolitaire(Tuling):
 
 
 if __name__ == '__main__':
-    t = IdiomsSolitaire('中1囊', '2343')
+    t = IdiomsSolitaire('狗', 'd9b8ce2f81ef')
     print t.get_info()
 
