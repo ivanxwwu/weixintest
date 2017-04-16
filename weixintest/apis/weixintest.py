@@ -29,9 +29,9 @@ app = flask.Blueprint('weixintest', __name__)
 def index():
     #echostr = flask.request.args.get('echostr', '')
     msg = receivce.parse_xml(flask.request.data)
+    touser = msg.FromUserName
+    fromuser = msg.ToUserName
     if isinstance(msg, receivce.Msg):
-        touser = msg.FromUserName
-        fromuser = msg.ToUserName
         print msg.MsgType
         if msg.MsgType == 'text':
             content = 'test'
@@ -39,10 +39,15 @@ def index():
             return normal_success_response(replymsg.send())
         if msg.MsgType == 'image':
             mediaId = msg.MediaId
-            mediaId = 'C6kNYAZl-249gVTtTrQ1RdhqC0tr0FIcOp5AN7Q4L78juTa9pO3zm-GvH6Ned8mj'
             replymsg = reply.ImageMsg(touser, fromuser, mediaId)
             return replymsg.send()
         else:
             return reply.Msg().send()
+    if isinstance(msg, receivce.EventMsg):
+        if msg.Event == 'CLICK':
+            if msg.Eventkey == 'mpGuide':
+                content = u"编写中，尚未完成".encode('utf-8')
+                replyMsg = reply.TextMsg(touser, fromuser, content)
+                return replyMsg.send()
     else:
         return normal_success_response("success")
