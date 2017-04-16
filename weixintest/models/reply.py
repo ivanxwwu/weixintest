@@ -13,7 +13,7 @@ class TextMsg(Msg):
         self.__dict['ToUserName'] = toUserName
         self.__dict['FromUserName'] = fromUserName
         self.__dict['CreateTime'] = int(time.time())
-        idiom = tuling.IdiomsSolitaire(content, fromUserName)
+        idiom = tuling.Chat(content, fromUserName)
         self.__dict['Content'] = idiom.get_info()
 
     def send(self):
